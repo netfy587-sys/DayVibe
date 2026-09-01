@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ring Craft — Styles, Footwork &amp; the Corner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#EDE4D3;
+    --canvas-dim:#E3D8C2;
+    --ink:#1C1712;
+    --accent:#2C4A63;      /* corner blue — this issue's accent */
+    --accent-deep:#1E3245;
+    --corner-gold:#B08A3E;
+    --line:#C9BCA0;
+    --muted:#6B6153;
+    --paper-shadow:rgba(28,23,18,0.12);
+    --maxw:740px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--canvas);
+    color:var(--ink);
+    font-family:'Lora', Georgia, serif;
+    font-size:18px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Anton', 'Arial Narrow', sans-serif;
+    font-weight:400;
+    letter-spacing:0.01em;
+    line-height:0.95;
+    text-wrap:balance;
+  }
+
+  a{color:var(--accent);}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    padding:28px 24px 22px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    max-width:980px;
+    margin:0 auto;
+    border-bottom:1px solid var(--line);
+  }
+  .masthead .mark{
+    font-family:'Anton', sans-serif;
+    font-size:22px;
+    letter-spacing:0.06em;
+  }
+  .masthead .mark span{color:var(--accent);}
+  .masthead .tagline{
+    font-size:13px;
+    color:var(--muted);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-align:right;
+  }
+  .masthead .tagline small{display:block; font-size:11px; opacity:0.75; margin-top:2px;}
+
+  /* ---------- Hero (split layout — different from Issue 1's full-bleed hero) ---------- */
+  .hero{
+    max-width:980px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:64vh;
+  }
+  .hero-text{
+    background:var(--accent-deep);
+    color:#EDE4D3;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:56px 44px;
+  }
+  .hero-eyebrow{
+    font-size:13px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#9FB6C6;
+    margin-bottom:14px;
+  }
+  .hero-text h1{
+    font-size:clamp(38px, 5.4vw, 62px);
+    margin:0 0 18px;
+    color:#F4EEE0;
+  }
+  .hero-text p.lede{
+    font-family:'Lora', serif;
+    font-style:italic;
+    font-size:17px;
+    color:#C9D3D9;
+    margin:0;
+  }
+  .hero-photo{
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .hero-photo .photo-credit{
+    position:absolute;
+    bottom:12px;
+    right:14px;
+    font-size:10.5px;
+    color:rgba(237,228,211,0.75);
+    background:rgba(20,17,14,0.35);
+    padding:2px 6px;
+  }
+
+  @media (max-width:720px){
+    .hero{grid-template-columns:1fr;}
+    .hero-photo{height:280px;}
+  }
+
+  /* ---------- Intro ---------- */
+  .intro{padding:56px 0 8px;}
+  .intro p{font-size:20px; color:#2A231C;}
+  .intro p:first-of-type::first-letter{
+    font-family:'Anton', sans-serif;
+    font-size:64px;
+    float:left;
+    line-height:0.8;
+    padding:6px 10px 0 0;
+    color:var(--accent);
+  }
+
+  /* ---------- Round section ---------- */
+  .round{padding:56px 0; border-top:1px solid var(--line);}
+  .round-head{display:flex; align-items:baseline; gap:16px; margin-bottom:22px;}
+  .round-num{
+    font-family:'Anton', sans-serif;
+    font-size:15px;
+    letter-spacing:0.14em;
+    color:var(--accent);
+    white-space:nowrap;
+    padding-top:6px;
+  }
+  .round-head h2{font-size:clamp(30px,5vw,44px); margin:0;}
+  .round-body p{margin:0 0 18px;}
+  .round-body h3{
+    font-family:'Lora', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:19px;
+    margin:26px 0 8px;
+    color:var(--accent);
+  }
+  .round-body ul, .round-body ol{padding-left:22px; margin:0 0 18px;}
+  .round-body li{margin-bottom:8px;}
+
+  /* image band placed ABOVE a section's text (reversed from Issue 1) */
+  .band{margin:0;}
+  .band img{width:100%; height:44vh; min-height:260px; object-fit:cover;}
+  .band figcaption{
+    max-width:var(--maxw); margin:10px auto 26px; padding:0 24px;
+    font-size:13px; color:var(--muted); font-style:italic;
+  }
+
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:2px;}
+  .duo img{height:260px; width:100%; object-fit:cover;}
+  .duo figcaption{
+    grid-column:1 / -1;
+    max-width:var(--maxw); margin:10px auto 0; padding:0 24px;
+    font-size:13px; color:var(--muted); font-style:italic;
+  }
+
+  /* ---------- Style cards ---------- */
+  .style-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin:8px 0 30px;
+  }
+  .style-card{background:var(--canvas); padding:22px 20px;}
+  .style-card h4{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    font-size:19px;
+    margin:0 0 8px;
+    color:var(--accent);
+  }
+  .style-card p{font-size:15.5px; margin:0; color:#3A322A;}
+  @media (max-width:640px){.style-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Diagram ---------- */
+  .diagram-box{
+    background:var(--canvas-dim);
+    border:1px solid var(--line);
+    padding:24px;
+    margin:24px 0 30px;
+  }
+  .diagram-box svg{width:100%; height:auto; display:block;}
+  .diagram-caption{font-size:13px; color:var(--muted); margin-top:10px; text-align:center; font-style:italic;}
+
+  /* ---------- Table ---------- */
+  table{width:100%; border-collapse:collapse; margin:10px 0 24px; font-size:16px;}
+  th, td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{
+    font-family:'Anton', sans-serif; font-weight:400; font-size:13px;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--muted);
+  }
+  tr:last-child td{border-bottom:none;}
+
+  /* ---------- Glossary ---------- */
+  .glossary{columns:2; column-gap:36px;}
+  .glossary dt{
+    font-family:'Anton', sans-serif; font-size:16px; letter-spacing:0.02em;
+    margin-top:16px; break-inside:avoid;
+  }
+  .glossary dt:first-child{margin-top:0;}
+  .glossary dd{margin:2px 0 0; font-size:15.5px; color:#3A322A;}
+
+  footer{border-top:1px solid var(--line); padding:36px 0 60px;}
+  footer p{font-size:13.5px; color:var(--muted); max-width:var(--maxw); margin:0 auto 8px; padding:0 24px;}
+
+  @media (max-width:640px){
+    body{font-size:16.5px;}
+    .glossary{columns:1;}
+    .duo{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="mark">THE SQUARED <span>CIRCLE</span></div>
+  <div class="tagline">Ring Craft<small>Issue 02 — Styles &amp; Technique</small></div>
+</div>
+
+<header class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">An Informational Guide</div>
+    <h1>Reading the Fight</h1>
+    <p class="lede">The same two rules — hit, don't get hit — but four very different ways of going about it. This issue looks at stance, style, footwork, defence, and the corner team working behind the scenes.</p>
+  </div>
+  <div class="hero-photo">
+    <img src="https://images.unsplash.com/photo-1526792903869-f3035bfc7f29?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A boxer resting against the ring ropes between rounds">
+    <div class="photo-credit">Wade Austin Ellis / Unsplash</div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap intro">
+    <p>Two boxers can follow the exact same rulebook and still fight completely different sports. One plants their feet and looks to end things early; another spends twelve rounds refusing to be hit at all. Neither is wrong — style in boxing is less a matter of taste and more a set of trade-offs between range, risk, and stamina.</p>
+    <p>Where our first issue covered the ring, the rules, and the equipment, this one covers the craft: how a fighter stands, how they move, how they defend, and who is working in their corner between rounds. As before, this is a reference, not a pitch for anything.</p>
+  </div>
+
+  <!-- ROUND 01 -->
+  <section class="round wrap" id="stance">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;01</span>
+      <h2>Stance: Orthodox &amp; Southpaw</h2>
+    </div>
+    <div class="round-body">
+      <p>Every boxer fights from one of two mirror-image stances, chosen mostly by which hand is naturally stronger and more accurate.</p>
+      <h3>Orthodox</h3>
+      <p>The left foot and left hand lead, with the stronger right hand held back near the chin, ready to cross. The large majority of right-handed boxers fight orthodox, since it lets their dominant hand deliver the power shot from the rear.</p>
+      <h3>Southpaw</h3>
+      <p>The mirror image: right foot and right hand lead, left hand held back for power. Many southpaws are naturally left-handed, though some orthodox fighters train to switch as a tactical option mid-fight.</p>
+      <p>An orthodox fighter meeting a southpaw creates an "open" stance matchup, where both lead feet sit on the same side rather than opposite — this changes the angles for the jab and the rear hand and is widely considered awkward for fighters who rarely train against it.</p>
+    </div>
+  </section>
+
+  <figure class="band">
+    <img src="https://images.unsplash.com/photo-1606335543042-57c525922933?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="A boxer in fighting stance wearing black boxing gloves">
+    <figcaption class="wrap">A tight, high guard — hands up, chin down, weight balanced between both feet.</figcaption>
+  </figure>
+
+  <!-- ROUND 02 -->
+  <section class="round wrap" id="styles">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;02</span>
+      <h2>Four Fighting Styles</h2>
+    </div>
+    <div class="round-body">
+      <p>Trainers and commentators generally sort boxers into four broad archetypes. Few fighters fit one category perfectly — most blend two — but the labels are a useful shorthand for how someone is likely to approach a fight.</p>
+      <div class="style-grid">
+        <div class="style-card">
+          <h4>Out-boxer</h4>
+          <p>Fights at long range, relies on the jab, footwork, and reach to score points while avoiding exchanges. Wins on volume and control rather than one-punch power.</p>
+        </div>
+        <div class="style-card">
+          <h4>Swarmer / pressure fighter</h4>
+          <p>Closes distance constantly, works behind a tight guard, and throws high volumes of combinations to the body and head to wear an opponent down.</p>
+        </div>
+        <div class="style-card">
+          <h4>Slugger / puncher</h4>
+          <p>Trades power for speed and volume, looking to end a fight in a single exchange rather than win a long, technical contest.</p>
+        </div>
+        <div class="style-card">
+          <h4>Counter-puncher</h4>
+          <p>Fights off the back foot deliberately, drawing an opponent's shots and answering with precise, well-timed counters rather than initiating.</p>
+        </div>
+      </div>
+      <p>Match-ups between styles are part of what makes boxing hard to predict: a pure out-boxer against a swarmer is a very different fight than an out-boxer against a counter-puncher, even if both opponents are similarly skilled.</p>
+    </div>
+  </section>
+
+  <div class="duo">
+    <img src="https://images.unsplash.com/photo-1636581563884-39569e81cbad?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="A boxer wearing a white and black boxing glove, extending a punch">
+    <img src="https://images.unsplash.com/photo-1660212074310-6d7ed176c746?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="A boxer wearing a red and black boxing glove">
+    <figcaption>Punch selection follows style — a slugger's power shot and an out-boxer's jab are thrown with very different intent.</figcaption>
+  </div>
+
+  <!-- ROUND 03 -->
+  <section class="round wrap" id="footwork">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;03</span>
+      <h2>Footwork &amp; Distance</h2>
+    </div>
+    <div class="round-body">
+      <p>Punches only land within a fighter's own reach, which makes footwork — not hand speed — the skill most trainers say separates good boxers from great ones. Distance is managed in small, controlled steps rather than long strides, so balance is never lost mid-exchange.</p>
+
+      <div class="diagram-box">
+        <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="600" height="340" fill="#EDE4D3" stroke="#1C1712" stroke-width="2"/>
+          <!-- center fighter -->
+          <circle cx="320" cy="190" r="10" fill="#1C1712"/>
+          <text x="320" y="215" font-family="Anton, sans-serif" font-size="12" fill="#1C1712" text-anchor="middle">YOU</text>
+          <!-- step directions -->
+          <line x1="320" y1="190" x2="320" y2="110" stroke="#2C4A63" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="320" y="98" font-family="Lora, serif" font-size="13" fill="#2C4A63" text-anchor="middle">step in — close range</text>
+
+          <line x1="320" y1="190" x2="320" y2="270" stroke="#2C4A63" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="320" y="292" font-family="Lora, serif" font-size="13" fill="#2C4A63" text-anchor="middle">step back — reset range</text>
+
+          <line x1="320" y1="190" x2="230" y2="150" stroke="#B08A3E" stroke-width="2" marker-end="url(#arrowgold)"/>
+          <text x="170" y="140" font-family="Lora, serif" font-size="13" fill="#B08A3E" text-anchor="middle">pivot off the</text>
+          <text x="170" y="156" font-family="Lora, serif" font-size="13" fill="#B08A3E" text-anchor="middle">lead foot</text>
+
+          <path d="M 320 190 A 90 90 0 0 1 400 120" fill="none" stroke="#9E2B25" stroke-width="2" marker-end="url(#arrowred)"/>
+          <text x="440" y="115" font-family="Lora, serif" font-size="13" fill="#9E2B25" text-anchor="middle">circle away from</text>
+          <text x="440" y="131" font-family="Lora, serif" font-size="13" fill="#9E2B25" text-anchor="middle">the power hand</text>
+
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2C4A63"/></marker>
+            <marker id="arrowgold" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#B08A3E"/></marker>
+            <marker id="arrowred" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#9E2B25"/></marker>
+          </defs>
+        </svg>
+        <p class="diagram-caption">The four basic footwork adjustments used to control range and angle.</p>
+      </div>
+
+      <h3>Small steps, not strides</h3>
+      <p>Moving the lead foot first when stepping forward, and the rear foot first when stepping back, keeps a fighter's base stable — crossing the feet or taking one big step leaves them off balance and open to a counter.</p>
+      <h3>Cutting off the ring</h3>
+      <p>Pressure fighters use angled steps rather than a straight chase to close the distance on an opponent who is circling away, limiting how much ring the retreating fighter has left to work with.</p>
+    </div>
+  </section>
+
+  <!-- ROUND 04 -->
+  <section class="round wrap" id="defence">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;04</span>
+      <h2>Defensive Technique</h2>
+    </div>
+    <div class="round-body">
+      <p>Boxing's defensive toolkit is built to avoid a punch entirely rather than simply absorb it — every method below keeps a fighter's hands free to counter immediately.</p>
+      <h3>Guard</h3>
+      <p>Hands held high near the temples, elbows tucked to protect the ribs — the default position a fighter returns to between every action.</p>
+      <h3>Slip</h3>
+      <p>A small lateral head movement that lets a straight punch pass by the ear rather than the chin, without moving the feet.</p>
+      <h3>Roll (bob and weave)</h3>
+      <p>Bending at the knees and waist to duck under a hook, then rising on the opposite side — used mainly against looping punches rather than straight ones.</p>
+      <h3>Parry</h3>
+      <p>Deflecting an incoming punch with a light touch of the glove, redirecting it just enough to miss.</p>
+      <h3>Block</h3>
+      <p>Absorbing a punch on the forearms or gloves rather than avoiding it, trading a little impact for certainty.</p>
+      <h3>Clinch</h3>
+      <p>Tying up an opponent's arms at close range to prevent follow-up punches — legal briefly, but a referee will break a prolonged clinch.</p>
+    </div>
+  </section>
+
+  <figure class="band">
+    <img src="https://images.unsplash.com/photo-1726867825984-0582b27728b8?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="Two boxers standing in a ring during a bout">
+    <figcaption class="wrap">Defence is judged the same way offence is — a round of well-timed slips and blocks can win a card without landing a single hard shot.</figcaption>
+  </figure>
+
+  <!-- ROUND 05 -->
+  <section class="round wrap" id="corner">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;05</span>
+      <h2>The Corner</h2>
+    </div>
+    <div class="round-body">
+      <p>A boxer is the only person allowed to throw a punch, but they are rarely working alone — a small team is permitted to sit at ringside and work during the sixty-second break between rounds.</p>
+      <h3>Head trainer</h3>
+      <p>Gives tactical instructions between rounds, adjusts the game plan based on what's working, and ultimately decides whether to stop the fight from the corner's side if their fighter is overmatched.</p>
+      <h3>Cutman</h3>
+      <p>A specialist who controls swelling and stops bleeding in the short break between rounds, using an ice-cold compress called an enswell and adrenaline-soaked cotton — without this work, many fights would be stopped early on cuts alone.</p>
+      <h3>Assistant / cornerman</h3>
+      <p>Handles the stool, water bottle, mouthguard, and Vaseline application to the face, keeping the sixty seconds running efficiently under pressure.</p>
+      <p>Corner staff can also throw in the towel — physically tossing a white towel into the ring — as a way to stop the fight and protect their fighter when they judge it unsafe to continue, even if the boxer wants to carry on.</p>
+    </div>
+  </section>
+
+  <div class="duo">
+    <img src="https://images.unsplash.com/photo-1585511543559-6c4d1f7d3da8?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="A man in the corner holding a water bottle">
+    <img src="https://images.unsplash.com/photo-1561532325-7d5231a2dede?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="A pair of red boxing gloves resting on a surface">
+    <figcaption>Sixty seconds, three jobs: water, instructions, and — if needed — treatment.</figcaption>
+  </div>
+
+  <!-- ROUND 06 -->
+  <section class="round wrap" id="amateur-pro">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;06</span>
+      <h2>Amateur vs. Professional</h2>
+    </div>
+    <div class="round-body">
+      <p>Amateur and professional boxing share a rulebook but differ enough that a fighter often has to adapt their whole approach when they turn pro.</p>
+      <table>
+        <thead><tr><th>Aspect</th><th>Amateur / Olympic</th><th>Professional</th></tr></thead>
+        <tbody>
+          <tr><td>Round length</td><td>3 rounds of 3 minutes</td><td>4–12 rounds of 3 minutes</td></tr>
+          <tr><td>Scoring emphasis</td><td>Clean, scoring punches counted closely</td><td>Broader judging of aggression, defence, ring control</td></tr>
+          <tr><td>Headgear</td><td>Used in most youth and women's divisions</td><td>Never used</td></tr>
+          <tr><td>Standing eight count</td><td>Common</td><td>Varies by commission, less common</td></tr>
+          <tr><td>Governing body</td><td>World Boxing / national federations</td><td>WBA, WBC, IBF, WBO and others</td></tr>
+        </tbody>
+      </table>
+      <p>Because amateur bouts are shorter and reward clean, visible punches, many amateur standouts are known for high work rate and out-boxing; the extended distance of professional rounds rewards patience, power management, and durability in ways a three-round amateur career never tests.</p>
+    </div>
+  </section>
+
+  <!-- ROUND 07 -->
+  <section class="round wrap" id="terms">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;07</span>
+      <h2>Technique Glossary</h2>
+    </div>
+    <div class="round-body">
+      <dl class="glossary">
+        <dt>Feint</dt><dd>A false movement meant to draw a reaction from an opponent without committing to a real punch.</dd>
+        <dt>Combination</dt><dd>A pre-planned sequence of two or more punches thrown in quick succession.</dd>
+        <dt>Lead hand / rear hand</dt><dd>The forward hand (jab side) and the back hand (power side), named relative to a fighter's stance.</dd>
+        <dt>Range</dt><dd>The distance at which a fighter's punches can land — long, mid, or close range each favour different tools.</dd>
+        <dt>Ring IQ</dt><dd>A fighter's ability to read a fight in real time and adjust tactics, distinct from raw physical skill.</dd>
+        <dt>Switch-hitter</dt><dd>A boxer who can fight comfortably from both orthodox and southpaw stances.</dd>
+        <dt>Body shot</dt><dd>A punch aimed below the chest, used to slow an opponent's legs and breathing over the course of a fight.</dd>
+        <dt>Check hook</dt><dd>A hook thrown while pivoting away, designed to catch a pursuing opponent and create space at the same time.</dd>
+        <dt>Rope-a-dope</dt><dd>A defensive tactic of resting against the ropes to absorb and block punches on the arms, tiring an aggressive opponent before countering.</dd>
+        <dt>Set-up punch</dt><dd>A punch thrown mainly to create an opening for the punch that follows it, rather than to score on its own.</dd>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>This page is a general reference on style and technique and does not replace instruction from a qualified coach — coaching cues vary between gyms and traditions.</p>
+    <p>Photographs via Unsplash contributors: Wade Austin Ellis, Lorenzo Fattò Offidani, Michael Starkie, engin akyurt, Eser GOAT, Chris Kendall, and Matthew Payne.</p>
+  </div>
+</footer>
+
+</body>
+</html>
